@@ -7,7 +7,6 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 const RegisterScreen = () => {
     const { id } = useParams();
-    console.log(id);
   const [user,setUser]=useState({
     "name":"",
     "movie":"",
@@ -18,6 +17,7 @@ const RegisterScreen = () => {
   const showDetails = useSelector((state) => state.showDetails);
   const {  show } = showDetails;
   const navigate= useNavigate();
+
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -34,16 +34,18 @@ const RegisterScreen = () => {
         navigate('/');
     }
   };
+
   useEffect(() => {
-    console.log(id);
     dispatch(ShowDetail(id));
-    setUser({ ...user, movie: show.name });
   }, [dispatch, id]);
   useEffect(() => {
     AOS.init({
       duration: 1000,
     });
   }, []);
+  setInterval(()=>{
+    setUser((prevUser) => ({ ...prevUser, movie: show.name }));
+  },[])
   return (
     <>
     <div className="w-25  text-white m-auto my-5" data-aos="fade-down">

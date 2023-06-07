@@ -22,7 +22,6 @@ const ShowDetails = () => {
     return tempElement.textContent || tempElement.innerText || '';
   };
   useEffect(() => {
-    console.log(id);
     dispatch(ShowDetail(id));
   }, [dispatch, id]);
   useEffect(() => {
